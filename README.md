@@ -22,9 +22,10 @@ Apenas para criar gitgnore.
 Para criar e gerenciar repositorio no GITHUB.
 
 ## Para facilitar Desenvolvimento: 🖥 
+poetry add --group dev pytest pytest-cov taskipy ruff
 ### Ruff:
-Formatador (sommelier de código)
+Formatador (analise estática) https://docs.astral.sh/ruff/
 ### Pytest:
 para testar a aplicação
 ### Taskipy:
-gerencia tasks
+gerencia tasks (Windows substituir ; por &&)
