@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "backend-techin"
+version = "0.1.0"
+description = ""
+authors = ["techin <zeusbr26@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.*"
+fastapi = "^0.115.5"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.1"
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+taskipy = "^1.14.1"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+
+[tool.taskipy.tasks]
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+run = 'fastapi dev backend_techin/app.py'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=backend_techin -vv'
+post_test = 'coverage html'
+
+[tool.ruff]
+line-length = 81
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
